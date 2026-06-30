@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CCC Photo Resizer</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-emblem" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="34" height="34">
+            <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M24 12 L30 16 V24 C30 30 27 34 24 36 C21 34 18 30 18 24 V16 Z" fill="currentColor" opacity="0.9"/>
+            <circle cx="24" cy="22" r="3" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>CCC Photo Resizer</h1>
+          <p>Official document sizing utility for CCC application uploads</p>
+        </div>
+      </div>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg id="iconSun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4.5a1 1 0 0 1-1-1V2a1 1 0 1 1 2 0v1.5a1 1 0 0 1-1 1Zm0 17a1 1 0 0 1 1 1V24a1 1 0 1 1-2 0v-1.5a1 1 0 0 1 1-1ZM4.5 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1.5a1 1 0 0 1 1 1Zm17 0a1 1 0 0 1 1-1H24a1 1 0 1 1 0 2h-1.5a1 1 0 0 1-1-1ZM6.34 6.34a1 1 0 0 1-1.41 0L3.88 5.29a1 1 0 1 1 1.41-1.41L6.34 4.93a1 1 0 0 1 0 1.41Zm12.02 12.02a1 1 0 0 1-1.41 0l-1.05-1.05a1 1 0 0 1 1.41-1.41l1.05 1.05a1 1 0 0 1 0 1.41ZM6.34 17.66a1 1 0 0 1 0 1.41l-1.05 1.05a1 1 0 1 1-1.41-1.41l1.05-1.05a1 1 0 0 1 1.41 0Zm12.02-12.02a1 1 0 0 1 0 1.41l-1.05 1.05a1 1 0 1 1-1.41-1.41l1.05-1.05a1 1 0 0 1 1.41 0ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" width="20" height="20" style="display:none"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <span id="themeLabel">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- ============ PRIVACY NOTICE ============ -->
+    <div class="privacy-banner">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2 4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3Zm0 9.99h7c-.5 4-3.2 7.5-7 8.49V12H5V6.3l7-2.62v8.31Z"/></svg>
+      <span>Your images never leave your computer. All processing happens locally in your browser.</span>
+    </div>
+
+    <!-- ============ APPLICANT NAME ============ -->
+    <section class="card">
+      <h2 class="card-title"><span class="step-badge">1</span> Applicant Details</h2>
+      <label class="field-label" for="applicantName">Applicant Name</label>
+      <input type="text" id="applicantName" class="text-input" placeholder="Enter Applicant Name" autocomplete="off" />
+      <p class="hint">This name will be used to create your ZIP file, e.g. <strong>Rahul_Kumar_CCC.zip</strong></p>
+    </section>
+
+    <!-- ============ UPLOAD CARDS ============ -->
+    <section class="upload-grid">
+
+      <!-- Photo -->
+      <div class="card upload-card" data-slot="photo">
+        <h2 class="card-title"><span class="step-badge">2</span> Passport Photo <span class="required">Required</span></h2>
+        <p class="spec-line">132 × 170 px &middot; Max 45 KB &middot; 300 DPI</p>
+
+        <div class="dropzone" tabindex="0" role="button" aria-label="Upload passport photo">
+          <input type="file" class="file-input" accept=".jpg,.jpeg,.png" hidden />
+          <div class="dz-empty">
+            <svg viewBox="0 0 24 24" width="34" height="34"><path fill="currentColor" d="M12 16a1 1 0 0 1-1-1V7.41l-2.3 2.3a1 1 0 1 1-1.4-1.42l4-4a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.42L13 7.41V15a1 1 0 0 1-1 1Z"/><path fill="currentColor" d="M5 18a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Z"/></svg>
+            <p>Drag &amp; drop or <span class="browse-text">browse</span></p>
+            <span class="dz-types">JPG, JPEG, PNG</span>
+          </div>
+          <div class="dz-preview" hidden>
+            <img alt="Photo preview" />
+            <button type="button" class="remove-btn" aria-label="Remove photo">✕</button>
+          </div>
+        </div>
+
+        <div class="progress-track" hidden><div class="progress-fill"></div></div>
+
+        <div class="result-box" hidden>
+          <div class="result-row"><span>Pixels</span><strong class="r-pixels">—</strong></div>
+          <div class="result-row"><span>File Size</span><strong class="r-size">—</strong></div>
+          <div class="result-row"><span>Status</span><strong class="r-status">—</strong></div>
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div class="card upload-card" data-slot="signature">
+        <h2 class="card-title"><span class="step-badge">3</span> Signature <span class="required">Required</span></h2>
+        <p class="spec-line">170 × 132 px &middot; Max 20 KB &middot; 200 DPI</p>
+
+        <div class="dropzone" tabindex="0" role="button" aria-label="Upload signature">
+          <input type="file" class="file-input" accept=".jpg,.jpeg,.png" hidden />
+          <div class="dz-empty">
+            <svg viewBox="0 0 24 24" width="34" height="34"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25ZM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/></svg>
+            <p>Drag &amp; drop or <span class="browse-text">browse</span></p>
+            <span class="dz-types">JPG, PNG</span>
+          </div>
+          <div class="dz-preview" hidden>
+            <img alt="Signature preview" />
+            <button type="button" class="remove-btn" aria-label="Remove signature">✕</button>
+          </div>
+        </div>
+
+        <div class="progress-track" hidden><div class="progress-fill"></div></div>
+
+        <div class="result-box" hidden>
+          <div class="result-row"><span>Pixels</span><strong class="r-pixels">—</strong></div>
+          <div class="result-row"><span>File Size</span><strong class="r-size">—</strong></div>
+          <div class="result-row"><span>Status</span><strong class="r-status">—</strong></div>
+        </div>
+      </div>
+
+      <!-- Left Thumb -->
+      <div class="card upload-card" data-slot="thumb">
+        <h2 class="card-title"><span class="step-badge">4</span> Left Thumb <span class="optional">Optional</span></h2>
+        <p class="spec-line">170 × 132 px &middot; Max 20 KB &middot; 200 DPI</p>
+
+        <div class="dropzone" tabindex="0" role="button" aria-label="Upload left thumb impression">
+          <input type="file" class="file-input" accept=".jpg,.jpeg,.png" hidden />
+          <div class="dz-empty">
+            <svg viewBox="0 0 24 24" width="34" height="34"><path fill="currentColor" d="M13 3c-2.2 0-4 1.8-4 4v5.1c-.6.1-1.2.4-1.7.8-.9.8-1.3 2-1.3 3.1v.5c0 2.5 1 4.7 2.7 6.2.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4C8.8 20 8 18.3 8 16.5v-.5c0-.7.3-1.4.8-1.8.3-.3.7-.4 1.2-.4V17a1 1 0 1 0 2 0v-1.2c0-.2 0-.4-.1-.6V7c0-1.1.9-2 2-2s2 .9 2 2v6.5a1 1 0 1 0 2 0V7c0-2.2-1.8-4-4-4Z"/></svg>
+            <p>Drag &amp; drop or <span class="browse-text">browse</span></p>
+            <span class="dz-types">JPG, PNG</span>
+          </div>
+          <div class="dz-preview" hidden>
+            <img alt="Left thumb preview" />
+            <button type="button" class="remove-btn" aria-label="Remove thumb">✕</button>
+          </div>
+        </div>
+
+        <div class="progress-track" hidden><div class="progress-fill"></div></div>
+
+        <div class="result-box" hidden>
+          <div class="result-row"><span>Pixels</span><strong class="r-pixels">—</strong></div>
+          <div class="result-row"><span>File Size</span><strong class="r-size">—</strong></div>
+          <div class="result-row"><span>Status</span><strong class="r-status">—</strong></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ ACTIONS ============ -->
+    <section class="card actions-card">
+      <div class="overall-msg" id="overallMsg" hidden></div>
+      <div class="actions">
+        <button id="resizeBtn" class="btn btn-primary" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M5 20h14a1 1 0 0 0 1-1v-7a1 1 0 1 0-2 0v6H6v-6a1 1 0 1 0-2 0v7a1 1 0 0 0 1 1Zm6-15.59L7.7 7.71a1 1 0 1 1-1.4-1.42l5-5a1 1 0 0 1 1.4 0l5 5a1 1 0 1 1-1.4 1.42L13 4.41V14a1 1 0 1 1-2 0V4.41Z"/></svg>
+          Resize &amp; Download ZIP
+        </button>
+        <button id="resetBtn" class="btn btn-secondary" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 5V2L7 6l5 4V7c3.3 0 6 2.7 6 6 0 1.3-.4 2.5-1.2 3.5a1 1 0 0 0 1.6 1.2A8 8 0 0 0 12 5Zm0 14c-3.3 0-6-2.7-6-6 0-1.3.4-2.5 1.2-3.5a1 1 0 1 0-1.6-1.2A8 8 0 1 0 12 21v-2Z"/></svg>
+          Reset All
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ LOADING OVERLAY ============ -->
+  <div id="loadingOverlay" class="loading-overlay" hidden>
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p id="loadingText">Processing images…</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>CCC Photo Resizer &middot; Runs entirely in your browser &middot; No data uploaded to any server</p>
+  </footer>
+
+  <!-- JSZip for offline ZIP creation (vendored, loaded as local script) -->
+  <script src="jszip.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
